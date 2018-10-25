@@ -1,0 +1,16 @@
+Sounds Credits
+CollectPickup.wav    --> 253172__sunTemple__retro-bonus-pickup-sfx.wav FREE USE
+PlayerDeath             --> 109340__cheesepuff__a-soldier-song-slow0.mp3 FREE USE
+AlliedGunfire            --> 269455__peeper66__shotgun2.wav FREE USE
+LevelStart                --> 349664__insanity54__go.ogg FREE USE
+FuelLow                   --> 389511__bbrocer__digital-alarm-loop.wav FREE USE
+TroopCountFull        --> 380696__vckhaze__baseball-calvary-sting-long-sustain.wav FREE USE
+ReturnToBase          --> 341578__kimp10__success.wav
+LetsGo.wav             --> NEED SOURCE find on freesound.com (341578__kimp10__success)
+CollectAlly               --> 168518__alienxxx__wooo.wav FREE USE
+MainMenuTheme    --> 442997__suburbanwizard__8bit-sample.wav
+MissionTheme         --> 412806__chriserweg__basic-drums-120-bpm.wav
+
+
+Explosion1.wav --> SFML Game dev book
+
