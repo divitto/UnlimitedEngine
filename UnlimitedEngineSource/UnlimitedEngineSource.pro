@@ -42,7 +42,31 @@ SOURCES += \
     lua/lundump.c \
     lua/lutf8lib.c \
     lua/lvm.c \
-    lua/lzio.c
+    lua/lzio.c \
+    Core/Animation.cpp \
+    Core/Application.cpp \
+    Core/BloomEffect.cpp \
+    Core/Command.cpp \
+    Core/CommandQueue.cpp \
+    Core/DataTables.cpp \
+    Core/EmitterNode.cpp \
+    Core/Entity.cpp \
+    Core/MusicPlayer.cpp \
+    Core/ParallelTask.cpp \
+    Core/ParticleNode.cpp \
+    Core/Player.cpp \
+    Core/PostEffect.cpp \
+    Core/ResourceManager.inl \
+    Core/SceneNode.cpp \
+    Core/SoundNode.cpp \
+    Core/SoundPlayer.cpp \
+    Core/SpriteNode.cpp \
+    Core/State.cpp \
+    Core/StateStack.cpp \
+    Core/TextNode.cpp \
+    Core/Utility.cpp \
+    Core/Utility.inl \
+    Core/World.cpp
 
 HEADERS += \
     lua/lapi.h \
@@ -70,7 +94,35 @@ HEADERS += \
     lua/lualib.h \
     lua/lundump.h \
     lua/lvm.h \
-    lua/lzio.h
+    lua/lzio.h \
+    Core/Animation.hpp \
+    Core/Application.hpp \
+    Core/BloomEffect.hpp \
+    Core/Category.hpp \
+    Core/Command.hpp \
+    Core/CommandQueue.hpp \
+    Core/DataTables.hpp \
+    Core/EmitterNode.hpp \
+    Core/Entity.hpp \
+    Core/Globals.hpp \
+    Core/MusicPlayer.hpp \
+    Core/ParallelTask.hpp \
+    Core/Particle.hpp \
+    Core/ParticleNode.hpp \
+    Core/Player.hpp \
+    Core/PostEffect.hpp \
+    Core/ResourceIdentifiers.hpp \
+    Core/ResourceManager.hpp \
+    Core/SceneNode.hpp \
+    Core/SoundNode.hpp \
+    Core/SoundPlayer.hpp \
+    Core/SpriteNode.hpp \
+    Core/State.hpp \
+    Core/StateIdentifiers.hpp \
+    Core/StateStack.hpp \
+    Core/TextNode.hpp \
+    Core/Utility.hpp \
+    Core/World.hpp
 
 DISTFILES += \
     Media/Sansation.ttf \
