@@ -1,8 +1,8 @@
 #ifndef MUSICPLAYER_HPP
 #define MUSICPLAYER_HPP
 
-#include "Engine/ResourceManager.hpp"
-#include "Engine/ResourceIdentifiers.hpp"
+#include "Core/ResourceManager.hpp"
+#include "Core/ResourceIdentifiers.hpp"
 
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/Audio/Music.hpp>

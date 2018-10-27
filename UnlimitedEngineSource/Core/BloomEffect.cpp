@@ -1,4 +1,4 @@
-#include "Engine/BloomEffect.hpp"
+#include "Core/BloomEffect.hpp"
 
 
 BloomEffect::BloomEffect( )

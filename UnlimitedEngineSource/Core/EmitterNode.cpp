@@ -1,7 +1,7 @@
-#include "Engine/EmitterNode.hpp"
-#include "Engine/ParticleNode.hpp"
-#include "Engine/CommandQueue.hpp"
-#include "Engine/Command.hpp"
+#include "Core/EmitterNode.hpp"
+#include "Core/ParticleNode.hpp"
+#include "Core/CommandQueue.hpp"
+#include "Core/Command.hpp"
 #include <iostream> // debuggin only
 
 EmitterNode::EmitterNode( unsigned int type)

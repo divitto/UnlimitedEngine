@@ -1,6 +1,6 @@
-#include "Engine/ParticleNode.hpp"
-#include "Engine/DataTables.hpp"
-#include "Engine/ResourceManager.hpp"
+#include "Core/ParticleNode.hpp"
+#include "Core/DataTables.hpp"
+#include "Core/ResourceManager.hpp"
 
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/Texture.hpp>

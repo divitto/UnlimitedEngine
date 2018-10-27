@@ -66,7 +66,27 @@ SOURCES += \
     Core/TextNode.cpp \
     Core/Utility.cpp \
     Core/Utility.inl \
-    Core/World.cpp
+    Core/World.cpp \
+    States/GameOverState.cpp \
+    States/GameState.cpp \
+    States/GetNameState.cpp \
+    States/HighScoreState.cpp \
+    States/LoadingState.cpp \
+    States/MenuState.cpp \
+    States/PauseState.cpp \
+    States/SettingsState.cpp \
+    States/StartLevelState.cpp \
+    States/TitleState.cpp \
+    Gui/Button.cpp \
+    Gui/Component.cpp \
+    Gui/Container.cpp \
+    Gui/Label.cpp \
+    Objects/Aircraft.cpp \
+    Objects/HelicopterBlades.cpp \
+    Objects/HUD.cpp \
+    Objects/Pickup.cpp \
+    Objects/Projectile.cpp \
+    Objects/Wall.cpp
 
 HEADERS += \
     lua/lapi.h \
@@ -122,7 +142,27 @@ HEADERS += \
     Core/StateStack.hpp \
     Core/TextNode.hpp \
     Core/Utility.hpp \
-    Core/World.hpp
+    Core/World.hpp \
+    States/GameOverState.hpp \
+    States/GameState.hpp \
+    States/GetNameState.hpp \
+    States/HighScoreState.hpp \
+    States/LoadingState.hpp \
+    States/MenuState.hpp \
+    States/PauseState.hpp \
+    States/SettingsState.hpp \
+    States/StartLevelState.hpp \
+    States/TitleState.hpp \
+    Gui/Button.hpp \
+    Gui/Component.hpp \
+    Gui/Container.hpp \
+    Gui/Label.hpp \
+    Objects/Aircraft.hpp \
+    Objects/HelicopterBlades.hpp \
+    Objects/HUD.hpp \
+    Objects/Pickup.hpp \
+    Objects/Projectile.hpp \
+    Objects/Wall.hpp
 
 DISTFILES += \
     Media/Sansation.ttf \
@@ -167,4 +207,14 @@ DISTFILES += \
     Media/Textures/Particle.png \
     Media/Textures/soldier.png \
     Media/Textures/trees.png \
-    Media/Textures/Wall.png
+    Media/Textures/Wall.png \
+    Game/HighScores.lua \
+    Game/Resources/Aircrafts.lua \
+    Game/Resources/Animations.lua \
+    Game/Resources/Assets.lua \
+    Game/Resources/Particles.lua \
+    Game/Resources/Pickups.lua \
+    Game/Resources/Projectiles.lua \
+    Game/Resources/SourceFileMap.lua \
+    Game/Application.lua \
+    Game/Game.lua

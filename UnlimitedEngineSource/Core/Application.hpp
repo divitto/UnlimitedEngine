@@ -5,8 +5,8 @@
 #include "ResourceManager.hpp"
 #include "Player.hpp"
 #include "StateStack.hpp"
-#include "Engine/MusicPlayer.hpp"
-#include "Engine/SoundPlayer.hpp"
+#include "Core/MusicPlayer.hpp"
+#include "Core/SoundPlayer.hpp"
 
 #include <SFML/System/Time.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>

@@ -1,5 +1,5 @@
-#include "Engine/SoundNode.hpp"
-#include "Engine/SoundPlayer.hpp"
+#include "Core/SoundNode.hpp"
+#include "Core/SoundPlayer.hpp"
 
 SoundNode::SoundNode( SoundPlayer& player )
 : SceneNode( )

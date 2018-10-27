@@ -1,13 +1,13 @@
- #include "Engine/World.hpp"
+ #include "Core/World.hpp"
 #include "Objects/Projectile.hpp"
 #include "Objects/Pickup.hpp"
 #include "TextNode.hpp"
 #include "DataTables.hpp"
 #include "State.hpp"
 #include "ParticleNode.hpp"
-#include "Engine/Player.hpp"
-#include "Engine/MusicPlayer.hpp"
-#include "Engine/SoundPlayer.hpp"
+#include "Core/Player.hpp"
+#include "Core/MusicPlayer.hpp"
+#include "Core/SoundPlayer.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/RectangleShape.hpp> // debugging only erase me!!

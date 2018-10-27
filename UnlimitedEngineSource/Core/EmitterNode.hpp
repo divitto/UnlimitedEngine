@@ -1,8 +1,8 @@
 #ifndef EMITTERNODE_HPP
 #define EMITTERNODE_HPP
 
-#include "Engine/SceneNode.hpp"
-#include "Engine/Particle.hpp"
+#include "Core/SceneNode.hpp"
+#include "Core/Particle.hpp"
 
 
 class ParticleNode;

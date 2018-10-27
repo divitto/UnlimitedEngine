@@ -1,9 +1,9 @@
 #ifndef PARTICLENODE_HPP
 #define PARTICLENODE_HPP
 
-#include "Engine/SceneNode.hpp"
-#include "Engine/ResourceIdentifiers.hpp"
-#include "Engine/Particle.hpp"
+#include "Core/SceneNode.hpp"
+#include "Core/ResourceIdentifiers.hpp"
+#include "Core/Particle.hpp"
 
 #include <SFML/Graphics/VertexArray.hpp>
 

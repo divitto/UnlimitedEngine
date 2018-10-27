@@ -1,10 +1,10 @@
 #ifndef BLOOMEFFECT_HPP
 #define BLOOMEFFECT_HPP
 
-#include "Engine/PostEffect.hpp"
-#include "Engine/ResourceIdentifiers.hpp"
-#include "Engine/ResourceManager.hpp"
-#include "Engine/DataTables.hpp"
+#include "Core/PostEffect.hpp"
+#include "Core/ResourceIdentifiers.hpp"
+#include "Core/ResourceManager.hpp"
+#include "Core/DataTables.hpp"
 
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/Graphics/Shader.hpp>

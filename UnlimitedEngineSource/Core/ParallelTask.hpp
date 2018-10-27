@@ -5,7 +5,7 @@
 #include "DataTables.hpp"
 #include "World.hpp"
 #include "ResourceIdentifiers.hpp"
-#include "Engine/SoundPlayer.hpp"
+#include "Core/SoundPlayer.hpp"
 
 #include <SFML/System/Thread.hpp>
 #include <SFML/System/Mutex.hpp>

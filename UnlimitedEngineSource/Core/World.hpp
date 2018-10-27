@@ -1,17 +1,17 @@
 #ifndef WORLD_HPP
 #define WORLD_HPP
 
-#include "Engine/ResourceManager.hpp"
-#include "Engine/ResourceIdentifiers.hpp"
+#include "Core/ResourceManager.hpp"
+#include "Core/ResourceIdentifiers.hpp"
 
-#include "Engine/SceneNode.hpp"
-#include "Engine/SpriteNode.hpp"
-#include "Engine/CommandQueue.hpp"
-#include "Engine/Command.hpp"
-#include "Engine/State.hpp"
-#include "Engine/PostEffect.hpp"
-#include "Engine/BloomEffect.hpp"
-#include "Engine/Globals.hpp"
+#include "Core/SceneNode.hpp"
+#include "Core/SpriteNode.hpp"
+#include "Core/CommandQueue.hpp"
+#include "Core/Command.hpp"
+#include "Core/State.hpp"
+#include "Core/PostEffect.hpp"
+#include "Core/BloomEffect.hpp"
+#include "Core/Globals.hpp"
 
 #include "Objects/Aircraft.hpp"
 #include "Objects/Pickup.hpp"
