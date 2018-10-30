@@ -15,5 +15,7 @@ extern bool  ALREADY_FLIPPED;
 extern int   PLAYER_SCORE;
 extern float BASE_SPEED;
 extern int GAME_LEVEL;
+extern int PLAYER_LIVES;
+extern int TOTAL_PLAYER_SCORE;
 
 #endif // GLOBALS_HPP

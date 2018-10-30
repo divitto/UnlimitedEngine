@@ -5,9 +5,9 @@
 
 
 State::State( States::ID stateID, StateStack& stack, Context context )
-: mStateID( stateID )
-, mStack(&stack)
+: mStack(&stack)
 , mContext(context)
+, mStateID( stateID )
 {
 }
 

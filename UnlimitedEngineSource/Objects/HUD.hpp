@@ -16,7 +16,7 @@ public:
     HUD( TextureManager &tex, FontManager& Fonts );
     void updateCurrent( float dt, CommandQueue& commands );
     void drawCurrent( sf::RenderTarget& target, sf::RenderStates states );
-    void updateText(int distance, int score, int troopCount, int fuel , int health );
+    void updateText(int distance, int score, int troopCount, int fuel , int health , unsigned int lives );
     void setHighScore( unsigned int highscore );
 private:
     TextNode* mDistanceDisplay;
@@ -25,12 +25,14 @@ private:
     TextNode* mScoreDisplay;
     TextNode* mHighScoreDisplay;
     TextNode* mHealthWarning;
+    TextNode* mNumLivesDisplay;
 
     bool isFlipped;
     bool hasMaxTroops;
     bool fuelLow;
     bool isDamaged;
     unsigned int highScore;
+    unsigned int numLives;
 };
 
 #endif // HUD_H

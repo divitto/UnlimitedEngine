@@ -1,6 +1,6 @@
 #include "GameState.hpp"
 #include "Core/MusicPlayer.hpp"
-
+#include "Core/Globals.hpp"
 
 GameState::GameState( States::ID id, StateStack& stack, Context context )
 : State( id, stack, context )
@@ -86,7 +86,14 @@ bool GameState::update( sf::Time dt )
     {
         mPlayer.setMissionStatus( Player::MissionFailure );
         mContext.music->stop( );
-        requestStackPush( States::GameOver );
+        if( PLAYER_LIVES < 1 )
+            requestStackPush( States::GameOver );
+        else // restart game with added score
+        {
+            TOTAL_PLAYER_SCORE += PLAYER_SCORE;
+            requestStackPop( );
+            requestStackPush( States::DeathState );
+        }
     }
 
     if( mPlayer.getMissionStatus() == Player::MissionSuccess )

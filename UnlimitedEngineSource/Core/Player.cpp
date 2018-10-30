@@ -6,16 +6,6 @@
 #include <string>
 #include <algorithm>
 
-enum JoyStickMap
-{
-    Up          = sf::Keyboard::Up,
-    Down        = sf::Keyboard::Down,
-    Left        = sf::Keyboard::Left,
-    Right       = sf::Keyboard::Right,
-    FireButton  = sf::Keyboard::Space,
-    Flip        = sf::Keyboard::M
-};
-
 static const unsigned int maxSpeed = 10;
 
 ///
@@ -56,20 +46,17 @@ Player::Player( )
 }
 
 void Player::handleEvent( const sf::Event& event, CommandQueue& commands )
-{
-    //if( event.type == sf::Event::JoystickMoved )
-    //{
-        if( event.joystickMove.axis == sf::Joystick::Y && event.joystickMove.position > 0 )
-            commands.push( mActionBinding[MoveDown] );
-        else if( event.joystickMove.axis == sf::Joystick::Y && event.joystickMove.position < 0 )
-            commands.push( mActionBinding[MoveUp] );
+{  
+    if( event.joystickMove.axis == sf::Joystick::Y && event.joystickMove.position > 0 )
+        commands.push( mActionBinding[MoveDown] );
+    else if( event.joystickMove.axis == sf::Joystick::Y && event.joystickMove.position < 0 )
+        commands.push( mActionBinding[MoveUp] );
 
+    if( event.joystickMove.axis == sf::Joystick::X && event.joystickMove.position > 0 )
+        commands.push( mActionBinding[MoveRight] );
+    else if( event.joystickMove.axis == sf::Joystick::X && event.joystickMove.position < 0 )
+        commands.push( mActionBinding[MoveLeft] );
 
-        if( event.joystickMove.axis == sf::Joystick::X && event.joystickMove.position > 0 )
-            commands.push( mActionBinding[MoveRight] );
-        else if( event.joystickMove.axis == sf::Joystick::X && event.joystickMove.position < 0 )
-            commands.push( mActionBinding[MoveLeft] );
-    //}
     if( event.type == sf::Event::JoystickButtonPressed )
     {
         //sf::Keyboard::Key keyCode;
@@ -176,7 +163,7 @@ void Player::initializeActions( )
     mActionBinding[MoveLeft].action      = derivedAction<Aircraft>( AircraftMover( -1,  0 ) );
     mActionBinding[MoveRight].action     = derivedAction<Aircraft>( AircraftMover( +1,  0 ) );
     mActionBinding[MoveUp].action        = derivedAction<Aircraft>( AircraftMover(  0, -1 ) );
-    mActionBinding[MoveDown].action      = derivedAction<Aircraft>( AircraftMover(  0,  1 ) ); // hold chopper still in y direction
+    mActionBinding[MoveDown].action      = derivedAction<Aircraft>( AircraftMover(  0,  .25 ) ); // hold chopper still in y direction
     mActionBinding[Fire].action          = derivedAction<Aircraft>( [] ( Aircraft& a, sf::Time){ a.fire( ); } );
     mActionBinding[LaunchMissile].action = derivedAction<Aircraft>( [] ( Aircraft&, sf::Time) { if( FLIP_GAMEPLAY ) FLIP_GAMEPLAY = false; else FLIP_GAMEPLAY = true; } ); //{ a.launchMissile( ); } );
 }

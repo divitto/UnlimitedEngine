@@ -10,9 +10,10 @@
 #include "Core/Globals.hpp"
 #include "Core/Utility.hpp"
 
-MenuState::MenuState(States::ID id, StateStack& stack, Context context)
-: State( id, stack, context)
-, mGUIContainer()
+MenuState::MenuState( States::ID id, StateStack& stack, Context context )
+: State( id, stack, context )
+, mGUIContainer( )
+, mTimeOut( sf::Time::Zero )
 {
     mContext.music->setVolume( 30 );
     mContext.music->play( MusicMap.at( "MenuTheme" ) );
@@ -57,7 +58,7 @@ MenuState::MenuState(States::ID id, StateStack& stack, Context context)
 
 MenuState::~MenuState()
 {
-
+    mContext.music->stop( );
 }
 
 void MenuState::draw( )
@@ -70,8 +71,14 @@ void MenuState::draw( )
     window.draw( mGUIContainer );
 }
 
-bool MenuState::update( sf::Time )
+bool MenuState::update( sf::Time dt )
 {   
+    mTimeOut += dt;
+    if( mTimeOut > sf::seconds( 15 ) )
+    {
+        requestStateClear( );
+        requestStackPush( States::SplashScreen );
+    }
 	return true;
 }
 

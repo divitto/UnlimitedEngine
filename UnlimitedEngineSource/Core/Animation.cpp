@@ -1,6 +1,7 @@
 #include "Animation.hpp"
 #include "DataTables.hpp"
 
+
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/Texture.hpp>
 
@@ -19,6 +20,7 @@ Animation::Animation( )
 , mElapsedTime( sf::Time::Zero )
 , mRepeat( false )
 {
+
 }
 
 Animation::Animation( unsigned int type, const TextureManager& textures )

@@ -10,9 +10,11 @@
 #include "States/SettingsState.hpp"
 #include "States/GameOverState.hpp"
 #include "States/GameState.hpp"
+#include "States/DeathState.hpp"
 #include "States/HighScoreState.hpp"
 #include "States/GetNameState.hpp"
 #include "States/StartLevelState.hpp"
+#include "States/SplashScreen.hpp"
 #include "DataTables.hpp"
 #include "Globals.hpp"
 
@@ -20,7 +22,9 @@
 // Debugging only!!
 #include <iostream>
 
-const sf::Time Application::TimePerFrame = sf::seconds( 1.f/60.f );
+int PLAYER_LIVES = 3;
+
+const sf::Time Application::TimePerFrame = sf::seconds( 1.f/ 60.f );
 
 Application::Application( )
     : mWindow( sf::VideoMode( WINDOW_WIDTH, WINDOW_HEIGHT ), "Super Rescue Raid!", sf::Style::Default )
@@ -28,11 +32,12 @@ Application::Application( )
 , mFonts( )
 , mPlayer( )
 , mMusic( )
-, mStateStack( State::Context( States::None, mWindow, mTextures, mFonts, mMusic, mSoundEffects, mPlayer, new std::vector<std::pair<std::string, int>>() ) )
+, mStateStack( State::Context( States::None, mWindow, mTextures, mFonts, mMusic, mSoundEffects, mPlayer, new std::vector<std::pair<std::string, int>>( ) ) )
 , mStatisticsNumFrames( 0 )
 , mStatisticsText( )
 , mStatisticsUpdateTime( )
 {
+    PLAYER_LIVES = 3;
     mWindow.setKeyRepeatEnabled( false );
     mWindow.setVerticalSyncEnabled( true );
 
@@ -44,7 +49,7 @@ Application::Application( )
     mStatisticsText.setCharacterSize( 10u );
 
     registerStates( );
-    mStateStack.pushState( States::Title );
+    mStateStack.pushState( States::SplashScreen );
 }
 
 void Application::run( )
@@ -114,10 +119,12 @@ void Application::updateStatistics( sf::Time dt )
 
 void Application::registerStates( )
 {
+    mStateStack.registerState<SplashScreen>     ( States::SplashScreen      );
     mStateStack.registerState<TitleState>       ( States::Title             );
     mStateStack.registerState<LoadingState>     ( States::Loading           );
     mStateStack.registerState<MenuState>        ( States::Menu              );
     mStateStack.registerState<GameState>        ( States::Game              );
+    mStateStack.registerState<DeathState>       ( States::DeathState        );
     mStateStack.registerState<PauseState>       ( States::Pause             );
     mStateStack.registerState<SettingsState>    ( States::Settings          );
     mStateStack.registerState<GameOverState>    ( States::GameOver          );

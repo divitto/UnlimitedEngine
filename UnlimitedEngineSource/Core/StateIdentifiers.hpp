@@ -6,9 +6,11 @@ namespace States
 	enum ID
 	{
 		None,
+        SplashScreen,
 		Title,
 		Menu,
         Game,
+        DeathState,
         Pause,
         Settings,
         GameOver,

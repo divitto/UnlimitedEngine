@@ -22,6 +22,7 @@ return {
         [Tex.HUDBackground]         = "Media/Textures/HUDbg.png";
         [Tex.HelicopterBlades]      = "Media/Textures/HelicopterBlades.png";
         [Tex.Grass]                 = "Media/Textures/grass.png";
+        [Tex.DivittoUnlimitedLogo]  = "Media/Textures/DivittoUnlimitedLogo1024X768.png" ;
     };
     Fonts = {
         [Font.Default]              = "Media/Sansation.ttf";

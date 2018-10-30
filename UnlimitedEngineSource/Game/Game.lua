@@ -11,6 +11,7 @@ return {
                     ,     "HUDBackground"
                     ,     "HelicopterBlades"
                     ,     "Grass"
+                    ,     "DivittoUnlimitedLogo"
     };
     Fonts               = { };
     Music               = {

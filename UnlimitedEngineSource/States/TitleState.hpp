@@ -14,15 +14,17 @@ public:
     ~TitleState( );
 
     //## Interface
-    virtual void draw();
-    virtual bool update(sf::Time dt);
-    virtual bool handleEvent(const sf::Event& event);
+    virtual void draw( );
+    virtual bool update( sf::Time dt );
+    virtual bool handleEvent( const sf::Event& event );
 private:
     //## Attributes
     sf::Sprite mBackgroundSprite;
     sf::Text   mText;
     bool	   mShowText;
     sf::Time   mTextEffectTime;
+    sf::Text   mTitleText;
+    sf::Time   mTimeOut;
 };
 
 #endif // TITLESTATE_HPP

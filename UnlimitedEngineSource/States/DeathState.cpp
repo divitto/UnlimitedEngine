@@ -1,4 +1,4 @@
-#include "LoadingState.hpp"
+#include "DeathState.hpp"
 #include "Core/Utility.hpp"
 #include "Core/ResourceManager.hpp"
 #include "Core/DataTables.hpp"
@@ -7,13 +7,13 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/View.hpp>
 
-LoadingState::LoadingState( States::ID id, StateStack& stack, Context context )
+DeathState::DeathState( States::ID id, StateStack& stack, Context context )
 : State( id, stack, context )
 {
     mTimer = sf::seconds( 2 );
     mReady = false;
 
-    std::string premise = "Alright soldiers!\nOur best Troops are out behind enemy lines,\nand while you've been sitting there\nthey've been gathering intel!\nSo now it's your turn,\nGet out there and bring those troops home!\n\n\t\t\t\t\t\tAre you READY?";
+    std::string premise = "\t\t\t\t\t\t\t\tThat was pathetic!\n\t\t\t\tThat can't be the best you can do!\n\t\t\t\t\t\t\t\tGet back out there,\n and you better not scratch my chopper this time!\n\n\t\t\t\t\t\t\t\t Are you READY?";
 
     mLoadingText = new sf::Text( premise, context.fonts->get( FontMap.at( "Default" ) ), 40 );
     mLoadingText->setFillColor( sf::Color( 181, 182, 228, 255 ) );
@@ -23,7 +23,7 @@ LoadingState::LoadingState( States::ID id, StateStack& stack, Context context )
     mLoadingTask.execute( context, CurrentLuaFile.c_str() );
 }
 
-void LoadingState::draw( )
+void DeathState::draw( )
 {
     sf::RenderTarget& window = *getContext( ).window;
 
@@ -32,28 +32,28 @@ void LoadingState::draw( )
     window.draw( *mLoadingText );
 }
 
-bool LoadingState::update( sf::Time dt )
+bool DeathState::update( sf::Time dt )
 {
     if( mReady )
         mTimer -= dt;
 
-	// Update the progress bar from the remote task or finish it
+    // Update the progress bar from the remote task or finish it
     if( mLoadingTask.isFinished( ) && mTimer < sf::Time::Zero )
-	{
+    {
         requestStackPop( );
         mContext.music->stop( );
         requestStackPush( States::Game );
     }
-	return true;
+    return true;
 }
 
-bool LoadingState::handleEvent( const sf::Event& event )
+bool DeathState::handleEvent( const sf::Event& event )
 {
     if( ( event.type == sf::Event::JoystickButtonPressed || ( event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Enter ) ) && !mReady )
     {
         mContext.sounds->play( SoundEffectMap.at( "LetsGo" ), sf::Vector2f( 0.0f, 0.0f ), 100 );
-        mLoadingText->setString( mLoadingText->getString() + "\n\n\n\t\t\t\t\t\t\t   LET'S GO!!" );
+        mLoadingText->setString( mLoadingText->getString() + "\n\n\n\t\t\t\t\t\t\t\t\t   LET'S GO!!" );
         mReady = true;
     }
-	return true;
+    return true;
 }

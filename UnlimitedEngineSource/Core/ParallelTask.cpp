@@ -93,41 +93,44 @@ void ParallelTask::runTask()
         }
     } else std::cout << "Error reading " << mFileName.c_str( ) << " data table" << std::endl;
 
-    // call with error checking
-    lua_getglobal( L, "debug" );
-    lua_getfield( L, -1, "traceback" );
-    lua_replace( L, -2 );
-    luaL_loadfile( L, "Game/HighScores.lua" );
-    if ( lua_pcall( L, 0, LUA_MULTRET, -2 ) ) {
-        luaL_traceback( L, L, lua_tostring( L, -1 ), 1 );
-        std::cout << "ERROR: " << lua_tostring( L, -1 ) << std::endl;
-        throw( lua_tostring( L, -1 ) );
-    }
-    if( lua_istable( L, -1 ) ) // high scores
+    if( mContext.highScores->size() == 0 )
     {
-        if( mContext.highScores->empty( ) )
+        // call with error checking
+        lua_getglobal( L, "debug" );
+        lua_getfield( L, -1, "traceback" );
+        lua_replace( L, -2 );
+        luaL_loadfile( L, "Game/HighScores.lua" );
+        if ( lua_pcall( L, 0, LUA_MULTRET, -2 ) ) {
+            luaL_traceback( L, L, lua_tostring( L, -1 ), 1 );
+            std::cout << "ERROR: " << lua_tostring( L, -1 ) << std::endl;
+            throw( lua_tostring( L, -1 ) );
+        }
+        if( lua_istable( L, -1 ) ) // high scores
         {
-            lua_pushnil( L );
-            while( lua_next( L, -2 ) != 0 )
+            if( mContext.highScores->empty( ) )
             {
-                std::string name = "";
-                int score = 0;
-                if( lua_istable( L, -1 ) )
+                lua_pushnil( L );
+                while( lua_next( L, -2 ) != 0 )
                 {
-                    lua_getfield( L, -1, "name" );
-                    name = lua_tostring( L, -1 );
-                    lua_pop( L, 1 ); // name
-                    lua_getfield( L, -1, "score" );
-                    score = (int)lua_tonumber( L, -1 );
+                    std::string name = "";
+                    int score = 0;
+                    if( lua_istable( L, -1 ) )
+                    {
+                        lua_getfield( L, -1, "name" );
+                        name = lua_tostring( L, -1 );
+                        lua_pop( L, 1 ); // name
+                        lua_getfield( L, -1, "score" );
+                        score = (int)lua_tonumber( L, -1 );
+                        lua_pop( L, 1 );
+                    }
+                    mContext.highScores->push_back( std::pair<std::string, int>( name, score ) );
                     lua_pop( L, 1 );
                 }
-                mContext.highScores->push_back( std::pair<std::string, int>( name, score ) );
-                lua_pop( L, 1 );
+                lua_pop( L ,1 );
             }
-            lua_pop( L ,1 );
         }
+        lua_close( L );
     }
-    lua_close( L );
     mCompletion = 100.0f;
 	{ // mFinished may be accessed from multiple threads, protect it
         sf::Lock lock( mMutex );

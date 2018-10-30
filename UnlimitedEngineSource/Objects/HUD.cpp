@@ -31,6 +31,12 @@ HUD::HUD( TextureManager& tex, FontManager& fonts)
     mDistanceDisplay->setPosition( WINDOW_WIDTH - 75, 15 );
     attachChild( std::move( distance ) );
 
+    std::unique_ptr<TextNode> lives( new TextNode( fonts, "" ) );
+    mNumLivesDisplay = lives.get();
+    mNumLivesDisplay->setColor( sf::Color( 79, 67, 174, 255 ) );
+    mNumLivesDisplay->setPosition( WINDOW_WIDTH - 75, 40 );
+    attachChild( std::move( lives ) );
+
     std::unique_ptr<TextNode> troopCount( new TextNode( fonts, "" ) );
     mTroopCountDisplay = troopCount.get();
     mTroopCountDisplay->setColor( sf::Color( 79, 67, 174, 255 ) );
@@ -58,7 +64,7 @@ void HUD::drawCurrent( sf::RenderTarget&, sf::RenderStates )
 {
 }
 
-void HUD::updateText( int distance, int score, int troopCount, int fuel, int health )
+void HUD::updateText( int distance, int score, int troopCount, int fuel, int health, unsigned int lives )
 {
     if( FLIP_GAMEPLAY && !ALREADY_FLIPPED )
     {
@@ -68,6 +74,7 @@ void HUD::updateText( int distance, int score, int troopCount, int fuel, int hea
         mHighScoreDisplay->setRotation( 180.0f );
         mFuelLevelDisplay->setRotation( 180.0f );
         mHealthWarning->setRotation( 180.0f );
+        mNumLivesDisplay->setRotation( 180.0f );
     }
     else if( !FLIP_GAMEPLAY && ALREADY_FLIPPED )
     {
@@ -77,11 +84,13 @@ void HUD::updateText( int distance, int score, int troopCount, int fuel, int hea
         mHighScoreDisplay->setRotation( 0.0f );
         mFuelLevelDisplay->setRotation( 0.0f );
         mHealthWarning->setRotation( 0.0f );
+        mNumLivesDisplay->setRotation( 0.0f );
     }
     mScoreDisplay->setString(       "Score: "       + std::to_string( score         ) );
     mTroopCountDisplay->setString(  "Troops: "      + std::to_string( troopCount    ) );
     mDistanceDisplay->setString(    "Distance: "    + std::to_string( distance      ) );
     mFuelLevelDisplay->setString(   "Fuel: "        + std::to_string( fuel          ) );
+    mNumLivesDisplay->setString(    "Lives: "       + std::to_string( lives      ) );
 
     if( !hasMaxTroops && troopCount == 3 )
     {

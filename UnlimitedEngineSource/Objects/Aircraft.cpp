@@ -45,6 +45,7 @@ Aircraft::Aircraft( unsigned int type, const TextureManager& textures, SoundPlay
 , mExplosion( AnimationMap.at( "Explosion" ), textures )
 , mCalledDestroyedMethod( false )
 , mSoundPlayer( soundPlayer )
+
 {
     mSprite.setTextureRect( Table[type].texRect );
 
@@ -118,9 +119,13 @@ void Aircraft::updateCurrent( sf::Time dt, CommandQueue& commands )
         if( !mCalledDestroyedMethod ) {
             mCalledDestroyedMethod = true;
             if( this->getCategory() == Category::PlayerAircraft )
+            {
                 mSoundPlayer->play( SoundEffectMap.at( "PlayerDeath" ), this->getPosition(), 20 );
+                PLAYER_LIVES -= 1;
+            }
             else if( this->getPosition().y < WINDOW_HEIGHT )
                 mSoundPlayer->play( SoundEffectMap.at( "Explosion" ), this->getPosition( ), 80 );
+
         }
         if( this->mType == AircraftMap.at( "Chopper" )   )
         {

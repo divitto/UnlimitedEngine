@@ -97,6 +97,5 @@ private:
     HelicopterBlades*   mBlades;
     SoundPlayer*        mSoundPlayer;
     SoundNode*          mShootSound;
-
 };
 #endif // AIRCRAFT_HPP

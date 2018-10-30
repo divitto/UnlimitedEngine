@@ -86,7 +86,9 @@ SOURCES += \
     Objects/HUD.cpp \
     Objects/Pickup.cpp \
     Objects/Projectile.cpp \
-    Objects/Wall.cpp
+    Objects/Wall.cpp \
+    States/SplashScreen.cpp \
+    States/DeathState.cpp
 
 HEADERS += \
     lua/lapi.h \
@@ -162,7 +164,9 @@ HEADERS += \
     Objects/HUD.hpp \
     Objects/Pickup.hpp \
     Objects/Projectile.hpp \
-    Objects/Wall.hpp
+    Objects/Wall.hpp \
+    States/SplashScreen.hpp \
+    States/DeathState.hpp
 
 DISTFILES += \
     Media/Sansation.ttf \
@@ -217,4 +221,5 @@ DISTFILES += \
     Game/Resources/Projectiles.lua \
     Game/Resources/SourceFileMap.lua \
     Game/Application.lua \
-    Game/Game.lua
+    Game/Game.lua \
+    Media/Textures/DivittoUnlimitedLogo1024X768.png

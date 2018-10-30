@@ -1,20 +1,21 @@
 return {
     Textures = {
-        Entities            = 0;
-        Explosion           = 1;
-        Buttons             = 2;
-        Particle            = 3;
-        TitleScreen         = 4;
-        MainMenu            = 5;
-        GameOver            = 6;
-        GreenTank           = 7;
-        Ally                = 8;
-        Helicopter          = 9;
-        Tree                = 10;
-        Fuel                = 11;
-        HUDBackground       = 12;
-        HelicopterBlades    = 13;
-        Grass               = 14;
+        Entities             = 0;
+        Explosion            = 1;
+        Buttons              = 2;
+        Particle             = 3;
+        TitleScreen          = 4;
+        MainMenu             = 5;
+        GameOver             = 6;
+        GreenTank            = 7;
+        Ally                 = 8;
+        Helicopter           = 9;
+        Tree                 = 10;
+        Fuel                 = 11;
+        HUDBackground        = 12;
+        HelicopterBlades     = 13;
+        Grass                = 14;
+        DivittoUnlimitedLogo = 15;
     };
 
     SoundEffects = {

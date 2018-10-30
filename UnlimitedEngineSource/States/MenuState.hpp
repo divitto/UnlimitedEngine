@@ -20,6 +20,7 @@ public:
 private:
     sf::Text       mTitleText;
     GUI::Container mGUIContainer;
+    sf::Time       mTimeOut;
 };
 
 #endif // BOOK_MENUSTATE_HPP

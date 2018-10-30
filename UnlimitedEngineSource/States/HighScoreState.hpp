@@ -29,6 +29,7 @@ private:
     sf::Text                                         mText;
     sf::Sprite                                       mBgSprite;
     sf::RectangleShape                               mBackgroundRect;
+    sf::Time                                         mTimeOut;
 };
 
 #endif // HIGHSCORESTATE_HPP

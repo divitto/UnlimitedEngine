@@ -2,6 +2,8 @@
 #include "Core/Utility.hpp"
 #include "Core/ResourceManager.hpp"
 #include "Core/DataTables.hpp"
+#include "Core/Globals.hpp"
+
 
 #include <SFML/Graphics/RenderWindow.hpp>
 
@@ -10,28 +12,38 @@ TitleState::TitleState( States::ID id, StateStack& stack, Context context )
 , mText( )
 , mShowText( true )
 , mTextEffectTime( sf::Time::Zero )
+, mTimeOut( sf::Time::Zero )
 {
     mContext.textures->load( TextureMap.at( "TitleScreen" ), MediaFileMap.at( "Textures" ).at( TextureMap.at( "TitleScreen" ) ) );
 
     mBackgroundSprite.setTexture( context.textures->get( TextureMap.at( "TitleScreen" ) ) );
 
+    mTitleText = sf::Text( " SUPER\nRESCUE\n   RAID", mContext.fonts->get( FontMap.at( "Default" ) ), 100 );
+    mTitleText.setFillColor( sf::Color( 181, 182, 228, 255 ) );
+    centerOrigin( mTitleText );
+    mTitleText.setPosition( WINDOW_WIDTH / 2, 200 );
+    mTitleText.setOutlineColor( sf::Color( 79, 67, 174, 255 ) );
+    mTitleText.setOutlineThickness( 5 );
+    mTitleText.setStyle( sf::Text::Bold );
+
     mText.setFont( context.fonts->get( FontMap.at( "Default" ) ) );
     mText.setString( "PRESS START TO PLAY" );
     centerOrigin( mText );
-    mText.setFillColor( sf::Color( 181, 182, 228, 255 ) );
+    mText.setFillColor( sf::Color( 79, 67, 174, 255 ) );
     mText.setPosition( sf::Vector2f( context.window->getView( ).getCenter().x, context.window->getView( ).getCenter().y + (context.window->getView( ).getSize().y / 4) ) );
 }
 
 TitleState::~TitleState( )
 {
     mContext.textures->remove( TextureMap.at( "TitleScreen" ) );
+    mContext.textures->remove( TextureMap.at( "DivittoUnlimitedLogo" ) );
 }
 
 void TitleState::draw( )
 {
     sf::RenderTarget& window = *getContext( ).window;
     window.draw( mBackgroundSprite );
-
+    window.draw( mTitleText );
     if ( mShowText )
         window.draw( mText );
 }
@@ -39,12 +51,17 @@ void TitleState::draw( )
 bool TitleState::update(sf::Time dt)
 {
 	mTextEffectTime += dt;
-
+    mTimeOut        += dt;
     if( mTextEffectTime >= sf::seconds( 0.5f ) )
 	{
 		mShowText = !mShowText;
 		mTextEffectTime = sf::Time::Zero;
 	}
+    if( mTimeOut > sf::seconds( 10 ) )
+    {
+        requestStateClear( );
+        requestStackPush( States::HighScoreState );
+    }
 
 	return true;
 }

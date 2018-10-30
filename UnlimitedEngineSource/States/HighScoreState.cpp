@@ -17,7 +17,11 @@ HighScoreState::HighScoreState( States::ID id, StateStack& stack, Context contex
 , mSceneGraph( )
 , mGUIContainer( )
 , mBackgroundRect( sf::Vector2f( 800, 600 ) )
+, mTimeOut( sf::Time::Zero )
 {
+    PLAYER_LIVES = 3; // resets lives for the next play through!
+    TOTAL_PLAYER_SCORE = 0; // resets score for the next playthrough!
+
     mContext.textures->load( TextureMap.at( "TitleScreen" ), MediaFileMap.at( "Textures" ).at( TextureMap.at( "TitleScreen" ) ) );
     mBgSprite = sf::Sprite( context.textures->get( TextureMap.at( "TitleScreen" ) ) );
     mText = sf::Text( "HIGH SCORES!", context.fonts->get( FontMap.at( "Default" ) ) );
@@ -25,6 +29,49 @@ HighScoreState::HighScoreState( States::ID id, StateStack& stack, Context contex
 
     mBackgroundRect.setFillColor( sf::Color( 0, 0, 0, 100 ) );
     mBackgroundRect.setPosition( 100, 50 );
+
+    if( context.highScores->size() == 0 )
+    {
+        lua_State* L = luaL_newstate();
+        luaL_openlibs( L );
+
+        // call with error checking
+        lua_getglobal( L, "debug" );
+        lua_getfield( L, -1, "traceback" );
+        lua_replace( L, -2 );
+        luaL_loadfile( L, "Game/HighScores.lua" );
+        if ( lua_pcall( L, 0, LUA_MULTRET, -2 ) ) {
+            luaL_traceback( L, L, lua_tostring( L, -1 ), 1 );
+            std::cout << "ERROR: " << lua_tostring( L, -1 ) << std::endl;
+            throw( lua_tostring( L, -1 ) );
+        }
+        if( lua_istable( L, -1 ) ) // high scores
+        {
+            if( mContext.highScores->empty( ) )
+            {
+                lua_pushnil( L );
+                while( lua_next( L, -2 ) != 0 )
+                {
+                    std::string name = "";
+                    int score = 0;
+                    if( lua_istable( L, -1 ) )
+                    {
+                        lua_getfield( L, -1, "name" );
+                        name = lua_tostring( L, -1 );
+                        lua_pop( L, 1 ); // name
+                        lua_getfield( L, -1, "score" );
+                        score = (int)lua_tonumber( L, -1 );
+                        lua_pop( L, 1 );
+                    }
+                    mContext.highScores->push_back( std::pair<std::string, int>( name, score ) );
+                    lua_pop( L, 1 );
+                }
+                lua_pop( L ,1 );
+            }
+        }
+        lua_close( L );
+    }
+
 
     // Display high scores
     for( unsigned int i = 0; i < 10; ++i )
@@ -75,8 +122,14 @@ void HighScoreState::draw( )
     window.draw( mGUIContainer );
 }
 
-bool HighScoreState::update( sf::Time )
+bool HighScoreState::update( sf::Time dt )
 {
+    mTimeOut += dt;
+    if( mTimeOut > sf::seconds( 10.0f ) )
+    {
+        requestStateClear( );
+        requestStackPush( States::Menu );
+    }
     return true;
 }
 

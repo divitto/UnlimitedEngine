@@ -25,6 +25,7 @@ bool                ALREADY_FLIPPED     = false;
 int                 PLAYER_SCORE        = 0;
 float               BASE_SPEED          = -150;
 int                 GAME_LEVEL          = 1;
+int                 TOTAL_PLAYER_SCORE  = 0;
 
 World::World( sf::RenderTarget &outputTarget, TextureManager &textures, FontManager& fonts, MusicPlayer& music, SoundPlayer& sounds, State::Context context )
 : mTarget( outputTarget )
@@ -48,7 +49,7 @@ World::World( sf::RenderTarget &outputTarget, TextureManager &textures, FontMana
     FLIP_SCREEN = false;
     FLIP_GAMEPLAY = false;
     ALREADY_FLIPPED = false;
-    PLAYER_SCORE = 0;
+    PLAYER_SCORE = TOTAL_PLAYER_SCORE;
     BASE_SPEED = -150;
     GAME_LEVEL = 1;
 
@@ -288,7 +289,7 @@ void World::update( sf::Time dt )
     mSceneGraph.update( dt, mCommandQueue );
     adaptPlayerPosition( );
 
-    mHud->updateText( mPlayerAircraft->getDistance( ), PLAYER_SCORE, mPlayerAircraft->getTroopCount( ), mPlayerAircraft->getFuelLevel( ), mPlayerAircraft->getHitpoints( ) );
+    mHud->updateText( mPlayerAircraft->getDistance( ), PLAYER_SCORE, mPlayerAircraft->getTroopCount( ), mPlayerAircraft->getFuelLevel( ), mPlayerAircraft->getHitpoints( ), PLAYER_LIVES );
 
     if( !mAlarmPlaying )
     {
